@@ -1,0 +1,11 @@
+local_settings.py
+db.sqlite3
+.env/
+.DS_Store
+
+### Python ###
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*.pyc
+.idea/
