@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title>Weight Loss | Weigh-in Instruction</title>
+{% endblock %}
+
+{% block body %}
+<p>To weigh in, you will need to send our referees 2 photos</p>
+<p>1: Stand on scale with today's weigh-in clearly written on a piece of paper</p>
+<p>2: Full body pose on a scale with lightweight clothing</p>
+
+<a href="{% url 'coreapp:weigh_word' %}">Continue to weigh in word</a>
+
+{% endblock %}

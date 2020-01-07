@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% load widget_tweaks %}
+
+{% block head %}
+<title>Weight Loss | User Details</title>
+{% endblock %}
+
+{% block body %}
+<form enctype="multipart/form-data" method="post">
+    {% csrf_token %}
+    {% render_field form.weigh_photo %} <br/>
+    {% render_field form.body_photo %} <br/>
+    {% render_field form.weight %} <br/>
+    {% render_field form.height %} <br/>
+    <button type="submit">Save</button>
+</form>
+{% endblock %}

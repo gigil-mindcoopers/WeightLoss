@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title>Weight Loss | Weigh-in Word</title>
+{% endblock %}
+
+{% block body %}
+<p>Your current weigh-in word is :</p>
+<b>{{ random_word }}</b>
+
+<p>Write this word on an index card or piece of paper with a bold marker.</p>
+
+<p><b>{{ random_word }}</b></p>
+
+<p>Be sure to use large letters that will be clearly visible in your photo.</p>
+
+<a href="#">Why am I doing this?</a><br/>
+
+<a href="#">Back</a>  <a href="{% url 'coreapp:user_details' slug %}">Continue</a>
+{% endblock %}

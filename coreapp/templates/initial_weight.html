@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title>Weight Loss | Initial Weigh</title>
+{% endblock %}
+
+{% block body %}
+<p>Your initial weigh-in is needed to start the game.</p>
+<a href="{% url 'coreapp:weigh_instruction' %}"> Submit initial weigh-in </a>
+{% endblock %}

@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% load widget_tweaks %}
+
+
+{% block head %}
+<title>Weight Loss | Home</title>
+
+{% endblock %}
+
+{% block body %}
+<a href="#">Continue in with Facebook</a><br/>
+<a href="{% url 'accounts:signup' %}"> or sign up with email</a>
+{% endblock %}

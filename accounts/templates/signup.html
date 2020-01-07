@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% load widget_tweaks %}
+
+
+{% block head %}
+<title>Weight Loss | SignUp</title>
+{% endblock %}
+
+{% block body %}
+Sign Up with facebook
+
+<form method="post" novalidate>
+{% csrf_token %}
+    {% render_field form.first_name type="text" placeholder="First Name" %}
+        {{ form.first_name.errors }}
+
+    {% render_field form.last_name type="text" placeholder="Second Name" %}
+        {{ form.last_name.errors }}
+
+    {% render_field form.email type="email" placeholder="Email" %}
+        {{ form.email.errors }}
+
+    {% render_field form.password1 type="password" placeholder="Password" %}
+        {{ form.password1.errors }}
+    <button type="submit " class="login_signin">Register</button>
+    <a  href="{% url 'accounts:login' %}"> Already Have An Account Click Here..</a>
+</form>
+{% endblock %}

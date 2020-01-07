@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% load widget_tweaks %}
+
+
+{% block head %}
+<title>Weight Loss | Login</title>
+{% endblock %}
+
+{% block body %}
+{% if form.non_field_errors %}
+        {% for error in form.non_field_errors %}
+            <p>{{ error }}</p>
+        {% endfor %}
+{% endif %}
+
+    <form method="post" novalidate>
+    {% csrf_token %}
+        {% render_field form.username type="email" id="email" placeholder="Email" %}
+        {{ form.username.errors }}
+        {% render_field form.password type="password" id="password" placeholder="Password" %}
+        {{ form.password.errors }}
+
+        <!--<a href="#"> Forgot password?</a>-->
+        <button type="submit">Sign in</button>
+        <a href="{% url 'accounts:signup' %}"> To Create An Account Click Here..</a>
+    </form>
+{% endblock %}
