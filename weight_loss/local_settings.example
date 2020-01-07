@@ -12,5 +12,8 @@ DATABASES = {
     }
 }
 
-Debug = True
-Production = False
+DEBUG = True
+PRODUCTION = False
+
+
+AUTH_USER_MODEL = 'accounts.User'
