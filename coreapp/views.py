@@ -30,7 +30,8 @@ class WeighWord(TemplateView):
             # Get existing random words
             user_details = UserDetails.objects.get(user=self.request.user)
             context['random_word'] = user_details.weigh_word
-        except user_details.DoesNotExist:
+            context['slug'] = user_details.slug
+        except UserDetails.DoesNotExist:
             # Generating new random word
             r = RandomWords()
             weigh_word = r.get_random_word()
@@ -39,8 +40,8 @@ class WeighWord(TemplateView):
             # Generating slug
             UserDetails.objects.create(user=self.request.user, weigh_word=weigh_word,
                                        slug=slugify(self.request.user.email))
+            context['slug'] = slugify(self.request.user.email)
 
-        context['slug'] = user_details.slug
 
         return context
 
