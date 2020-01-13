@@ -1,12 +1,13 @@
+from django.http import HttpResponseRedirect
 from django.shortcuts import render
 
 # Create your views here.
 from django.urls import reverse
 from django.utils.text import slugify
-from django.views.generic import TemplateView, UpdateView
+from django.views.generic import TemplateView, UpdateView, CreateView
 from random_word import RandomWords
 
-from coreapp.models import UserDetails
+from coreapp.models import UserDetails, MyFittness
 
 
 class Home(TemplateView):
@@ -46,14 +47,27 @@ class WeighWord(TemplateView):
         return context
 
 
-class UserData(UpdateView):
+class UserData(CreateView):
     template_name = 'user_details.html'
-    model = UserDetails
+    model = MyFittness
     fields = [
         'weigh_photo', 'body_photo',
-        'weight', 'height'
+        'weight', 'height', 'user'
     ]
     success_url = '/initial-weigh/details/data-received/'
+
+    def form_valid(self, form):
+        form.cleaned_data['user'] = self.request.user
+        form.save()
+        print("save")
+    #     # Saving user details
+    #     weight = form.cleaned_data['weight']
+    #     height = form.cleaned_data['height']
+    #     weigh_word = form.cleaned_data['height']
+    #     weigh_photo = form.cleaned_data['height']
+    #     body_photo = form.cleaned_data['height']
+    #     # UserDetails.objects.create()
+        return HttpResponseRedirect(reverse('coreapp:data_received'))
 
 
 class DataReceived(TemplateView):
