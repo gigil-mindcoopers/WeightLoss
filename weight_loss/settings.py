@@ -33,12 +33,17 @@ ALLOWED_HOSTS = ['*']
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
+    'django.contrib.sites',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
     'widget_tweaks',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'allauth.socialaccount.providers.facebook',
 
     'accounts',
     'coreapp',
@@ -139,3 +144,18 @@ try:
 except ImportError:
     print("Local settings missing from your machine !!!"
           "Create a local_settings.py using local_settings.example")
+
+
+# Custom django settings
+
+AUTHENTICATION_BACKENDS = (
+    'django.contrib.auth.backends.ModelBackend',
+    'allauth.account.auth_backends.AuthenticationBackend',
+)
+
+SITE_ID=1
+
+AUTH_USER_MODEL = 'accounts.User'
+
+LOGIN_REDIRECT_URL = 'coreapp:weigh_instruction'
+LOGOUT_REDIRECT_URL = 'coreapp:home'

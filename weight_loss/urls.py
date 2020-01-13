@@ -23,6 +23,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('accounts/', include('accounts.urls')),
     path('', include('coreapp.urls')),
+    path('fb/', include('allauth.urls')),
 ]
 
 if settings.DEBUG:
