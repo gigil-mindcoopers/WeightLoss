@@ -52,22 +52,15 @@ class UserData(CreateView):
     model = MyFittness
     fields = [
         'weigh_photo', 'body_photo',
-        'weight', 'height', 'user'
+        'weight', 'height'
     ]
     success_url = '/initial-weigh/details/data-received/'
 
     def form_valid(self, form):
-        form.cleaned_data['user'] = self.request.user
-        form.save()
-        print("save")
-    #     # Saving user details
-    #     weight = form.cleaned_data['weight']
-    #     height = form.cleaned_data['height']
-    #     weigh_word = form.cleaned_data['height']
-    #     weigh_photo = form.cleaned_data['height']
-    #     body_photo = form.cleaned_data['height']
-    #     # UserDetails.objects.create()
-        return HttpResponseRedirect(reverse('coreapp:data_received'))
+        user_data = form.save(commit=False)
+        user_data.user = UserDetails.objects.get(user=self.request.user)
+        user_data.save()
+        return super(UserData, self).form_valid(form)
 
 
 class DataReceived(TemplateView):
